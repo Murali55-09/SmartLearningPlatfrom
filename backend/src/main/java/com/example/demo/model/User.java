@@ -10,16 +10,14 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
-    private Long id;  // change from String to Long
+    private Long id;  // Must be Long
 
     private String name;
     private String email;
     private String password;
 
-    // Default constructor
     public User() {}
 
-    // Constructor
     public User(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
