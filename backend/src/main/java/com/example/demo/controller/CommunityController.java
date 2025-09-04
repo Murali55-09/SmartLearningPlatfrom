@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Community;
-import com.example.demo.repository.CommunityRepository;
+import com.example.demo.service.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,42 +12,36 @@ import java.util.List;
 public class CommunityController {
 
     @Autowired
-    private CommunityRepository communityRepository;
+    private CommunityService communityService;
 
     // CREATE community
     @PostMapping
     public Community createCommunity(@RequestBody Community community) {
-        return communityRepository.save(community);
+        return communityService.createCommunity(community);
     }
 
     // READ all communities
     @GetMapping
     public List<Community> getAllCommunities() {
-        return communityRepository.findAll();
+        return communityService.getAllCommunities();
     }
 
     // READ single community
     @GetMapping("/{id}")
     public Community getCommunityById(@PathVariable Long id) {
-        return communityRepository.findById(id).orElse(null);
+        return communityService.getCommunityById(id);
     }
 
     // UPDATE community
     @PutMapping("/{id}")
     public Community updateCommunity(@PathVariable Long id, @RequestBody Community communityDetails) {
-        Community community = communityRepository.findById(id).orElse(null);
-        if (community != null) {
-            community.setName(communityDetails.getName());
-            community.setDescription(communityDetails.getDescription());
-            return communityRepository.save(community);
-        }
-        return null;
+        return communityService.updateCommunity(id, communityDetails);
     }
 
     // DELETE community
     @DeleteMapping("/{id}")
     public String deleteCommunity(@PathVariable Long id) {
-        communityRepository.deleteById(id);
+        communityService.deleteCommunity(id);
         return "Community deleted with id: " + id;
     }
 }
