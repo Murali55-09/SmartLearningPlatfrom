@@ -1,14 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Users from "../pages/Users.vue";
-import Admins from "../pages/Admins.vue";
-import Communities from "../pages/Communities.vue";
 
+// Import all views (make sure these files exist in src/views/)
+import HomePage from "../views/HomePage.vue";
+import LoginPage from "../views/LoginPage.vue";
+import RegisterPage from "../views/RegisterPage.vue";
+import StudentDashboard from "../views/StudentDashboard.vue";
+import AdminDashboard from "../views/AdminDashboard.vue"; // 🔥 added this
 
 const routes = [
-  { path: "/", redirect: "/users" }, // default redirect
-  { path: "/users", component: Users },
-  { path: "/admins", component: Admins },
-  { path: "/communities", component: Communities },
+  { path: "/", name: "Home", component: HomePage },
+  { path: "/login", name: "Login", component: LoginPage },
+  { path: "/register", name: "Register", component: RegisterPage },
+  { path: "/student-dashboard", name: "StudentDashboard", component: StudentDashboard },
+  { path: "/admin-dashboard", name: "AdminDashboard", component: AdminDashboard } // 🔥 added this
 ];
 
 const router = createRouter({

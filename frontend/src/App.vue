@@ -1,12 +1,28 @@
 <template>
-  <div>
-    <nav class="bg-gray-800 text-white p-4 flex space-x-4">
-      <router-link to="/users" class="hover:underline">Users</router-link>
-      <router-link to="/admins" class="hover:underline">Admins</router-link>
-      <router-link to="/communities" class="hover:underline">Communities</router-link>
-    </nav>
-    <div class="p-6">
-      <router-view />
-    </div>
+  <div id="app">
+    <AppHeader />
+    <router-view />
+    <AppFooter />
   </div>
 </template>
+
+<script>
+import AppHeader from "./components/AppHeader.vue";
+import AppFooter from "./components/AppFooter.vue";
+
+export default {
+  name: "App",
+  components: {
+    AppHeader,
+    AppFooter
+  }
+};
+</script>
+
+<style>
+/* Global styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+</style>
